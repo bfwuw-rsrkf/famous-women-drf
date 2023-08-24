@@ -3,4 +3,5 @@ from .views import *
 
 urlpatterns = [
     path('woman-list/', WomanListAPIView.as_view(), name='woman-list'),
+    path('woman-list/<int:pk>', WomanListAPIView.as_view(), name='woman-list')
 ]
