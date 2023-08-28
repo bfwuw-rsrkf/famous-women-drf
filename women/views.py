@@ -1,4 +1,4 @@
-from django.forms import model_to_dict
+from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.response import Response
 # from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
@@ -18,17 +18,28 @@ class WomanListAPIView(APIView):
         return Response({'post': serializer.data})
 
     def put(self, request, *args, **kwargs):
-        pk = kwargs.get('pk', None)
+        pk = kwargs.get('pk')
         if not pk:
             return Response({'error': 'Method Put not allowed.'})
         try:
             instance = Woman.objects.get(pk=pk)
-        except KeyError:
+        except ObjectDoesNotExist:
             return Response({'error': 'Object does not exist.'})
         serializer = WomanSerializer(data=request.data, instance=instance)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'post': serializer.data})
+
+    def delete(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        if not pk:
+            return Response({'error': 'Method Delete not allowed.'})
+        try:
+            instance = Woman.objects.get(pk=pk)
+        except ObjectDoesNotExist:
+            return Response({'error': 'Object does not exist.'})
+        instance.delete()
+        return Response({'message': 'Successfully deleted.'})
 
 
 # class WomanListAPIView(generics.ListAPIView):
