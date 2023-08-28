@@ -1,8 +1,8 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 from .models import Woman
 
 
-class WomanSerializer(serializers.ModelSerializer):
+class WomanSerializer(ModelSerializer):
     class Meta:
         model = Woman
         fields = [
