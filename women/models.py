@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -22,6 +23,7 @@ class Woman(models.Model):
     time_updated = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
     cat = models.ForeignKey(Category, on_delete=models.PROTECT, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
