@@ -1,4 +1,5 @@
 from pathlib import Path
+from datetime import timedelta
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,7 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # libraries
     'rest_framework',
-    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'djoser',
     # apps
     'women',
@@ -94,9 +95,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
 }
