@@ -7,6 +7,7 @@ class WomanSerializer(ModelSerializer):
         model = Woman
         fields = [
             'title',
+            'cat',
             'content',
-            'cat'
+            'photo',
         ]
