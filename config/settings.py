@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'djoser',
     'cloudinary_storage',
     'cloudinary',
+    'drf_yasg',
     # apps
     'women',
 ]
