@@ -18,7 +18,7 @@ class Woman(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField(blank=True, null=True)
     slug = models.SlugField(max_length=255, unique=True, verbose_name="URL", null=True)
-    photo = models.ImageField(upload_to="women/photos", blank=True, null=True)
+    photo = models.ImageField(upload_to="famous-women-drf/women/woman/photos", blank=True, null=True)
     time_created = models.DateField(auto_now_add=True)
     time_updated = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
